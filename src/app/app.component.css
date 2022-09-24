@@ -1,0 +1,29 @@
+.flex{
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    justify-content: center;
+}
+
+nav{
+    background-color: rgb(133, 231, 133);
+}
+
+ul
+{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    padding: 20px;
+}
+
+li:hover{
+    background-color: rgb(178, 241, 178);
+    cursor: pointer;
+}
+

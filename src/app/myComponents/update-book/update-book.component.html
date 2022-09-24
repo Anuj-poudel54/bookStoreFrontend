@@ -1,0 +1,19 @@
+<main>
+    <div id="msg">
+        <p>Book updated!</p>
+    </div>
+    <form action="" (ngSubmit)="updateBook()">
+        
+    <div class="update-book">
+        <input type="text" [(ngModel)]="title" name="title" placeholder="Book title...">
+        <input type="text" [(ngModel)]="author" name="author" placeholder="Book author...">
+        <textarea type="text" [(ngModel)]="description" name="description" placeholder="Book desctiption..."></textarea>
+        <input list="categories" [(ngModel)]="category" name="category" placeholder="Book category...">
+        <datalist id="categories">
+            <option *ngFor="let category of categories" value={{category.name}}></option>
+        </datalist>
+        <input type="number" [(ngModel)]="price" name="price" placeholder="Book price...">
+        <input type="Submit" value="Update" class="btn submit-btn">
+    </div>
+    </form>
+</main>

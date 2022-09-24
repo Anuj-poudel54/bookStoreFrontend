@@ -1,0 +1,65 @@
+<div class="catagories center">
+    <ul class="flex">
+        <li (click)="changeFilterByCategory(0)">All</li>
+        <li *ngFor="let category of categories" class="categories-filter" (click)="changeFilterByCategory(category.category_id)" >
+            {{category.name}}
+        </li>
+        <li class="adminModeToggler">
+            <input type="checkbox" name="adminMode" (click)="changeAdminMode()" id="adminModeToggle">
+            <label for="adminModeToggle"> {{ (adminMode?"Disable Admin Mode": "Enable Admin Mode") }} </label>
+        </li>
+    </ul>
+</div>
+<main>
+    <!-- Display books section -->
+    <div class="books" *ngIf="books && books.length>0; else noBooks">
+        <!-- Display all the books -->
+        <ng-template [ngIf]="filterByCategory == 0" [ngIfElse]="applyFilter">
+            <div class="book" *ngFor="let book of books"  >
+                <h2>{{book.title}}</h2>
+                <p [class]="['pin', getBookCategoryName(book)]">{{ getBookCategoryName(book) }}</p>
+    
+                <p>by {{book.author}}</p>
+                <hr>
+                <p>{{book.description.slice(0,100)}}...</p>
+                <p><b>${{book.price}}</b></p>
+                <div class="buttons">
+                    <button class="btn btn-update" *ngIf="adminMode" (click)="gotoUpdatePage()"
+                        [routerLink]="['/update', book.book_id]">Update</button>
+                    <button class="btn btn-del" *ngIf="adminMode" (click)="deleteBook(book.book_id)">Delete</button>
+                </div>
+            </div>
+        </ng-template>
+
+<!-- if category filter is applied -->
+        <ng-template #applyFilter>
+            <ng-template  *ngFor="let book of books" [ngIf]="book.category_id === filterByCategory">
+            <div class="book">
+                    <h2>{{book.title}}</h2>
+                    <p [class]="['pin', getBookCategoryName(book)]">{{ getBookCategoryName(book) }}</p>
+                    
+                    <p>by {{book.author}}</p>
+                    <hr>
+                    <p>{{book.description.slice(0,100)}}...</p>
+                    <p><b>${{book.price}}</b></p>
+                    <div class="buttons">
+                        <button class="btn btn-update" *ngIf="adminMode" (click)="gotoUpdatePage()"
+                            [routerLink]="['/update', book.book_id]">Update</button>
+                        <button class="btn btn-del" *ngIf="adminMode" (click)="deleteBook(book.book_id)">Delete</button>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-template>
+    </div>
+
+    <ng-template #noBooks>
+        <strong>No books to show!</strong>
+    </ng-template>
+
+    <!-- Add book section -->
+    <div class="add-books">
+        <h2>Add new book</h2>
+        <br>
+        <app-add-book (addBookEmitter)="updateBookList($event)" [categories]="categories"></app-add-book>
+    </div>
+</main>

@@ -1,0 +1,67 @@
+.books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.book {
+    text-align: center;
+    height: fit-content;
+    line-height: 30px;
+    font-size: large;
+    box-shadow: 1px 4px 21px rgb(145 181 145);
+    padding: 10px;
+}
+
+.book h2 {
+    margin-bottom: 20px;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+
+.book p {
+    text-align: justify;
+}
+
+.catagories {
+    margin-top: 40px;
+}
+
+.catagories li:not(.adminModeToggler) {
+    border: 1px solid rgb(91, 146, 91);
+}
+
+.catagories li,
+label {
+    cursor: pointer;
+    padding: 10px;
+    text-transform: capitalize;
+    font-size: large;
+
+}
+
+.catagories li:hover:not(.adminModeToggler) {
+    color: white;
+    background-color: rgb(91, 146, 91);
+}
+
+.btn-del {
+    background-color: rgb(215, 80, 80);
+}
+
+.pin.thriller {
+    background-color: rgb(232, 109, 56);
+}
+
+/* .pin.romance { } */
+
+.pin.mystery { background-color: rgb(226, 226, 65);}
+
+.pin.fantasy { background-color: rgb(165, 80, 215);}
+
+.pin.sci-fi { background-color: rgb(123, 215, 80);}
+
+.add-books h2{
+    color: rgb(30, 241, 30);
+    text-decoration: underline;
+}
