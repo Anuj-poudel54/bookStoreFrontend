@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    margin-block: 2rem;
+
+}
+
+button {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+.books {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+    margin: 3rem auto;
+
+    .cart-book {
+        padding: 2rem;
+        box-shadow: 0 0px 6px -3px black;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .price {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.remove-book-btn {
+    background-color: rgb(194, 92, 92);
+    color: white;
+    border: none;
+
+    padding: .5rem;
+}

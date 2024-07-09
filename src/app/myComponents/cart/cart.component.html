@@ -1,0 +1,24 @@
+<div class="header">
+    <h1>Your Cart</h1>
+    <button (click)="clearCart()">Clear All Cart</button>
+    <div>
+        <strong> {{booksOnCart.length}} </strong> Book(s) in cart
+    </div>
+</div>
+
+
+<div class="books">
+    <ng-template [ngIf]=" booksOnCart !== undefined && booksOnCart.length > 0" [ngIfElse]="noBooks">
+        <div class="cart-book" *ngFor="let book of booksOnCart">
+            <strong>{{book.name}}</strong> <strong> {{book.count}}</strong>
+            <button (click)="removeBookFromCart(book.name)" class="remove-book-btn">Remove</button>
+        </div>
+
+        <hr>
+
+    </ng-template>
+
+    <ng-template #noBooks>
+        <h3>No books in your cart Yet!</h3>
+    </ng-template>
+</div>

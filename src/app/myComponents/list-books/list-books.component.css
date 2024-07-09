@@ -55,13 +55,23 @@ label {
 
 /* .pin.romance { } */
 
-.pin.mystery { background-color: rgb(226, 226, 65);}
+.pin.mystery {
+    background-color: rgb(226, 226, 65);
+}
 
-.pin.fantasy { background-color: rgb(165, 80, 215);}
+.pin.fantasy {
+    background-color: rgb(165, 80, 215);
+}
 
-.pin.sci-fi { background-color: rgb(123, 215, 80);}
+.pin.sci-fi {
+    background-color: rgb(123, 215, 80);
+}
 
-.add-books h2{
+.add-books h2 {
     color: rgb(30, 241, 30);
     text-decoration: underline;
+}
+
+button:hover {
+    filter: brightness(.8);
 }

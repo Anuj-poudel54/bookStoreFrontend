@@ -6,3 +6,9 @@ export class Book {
     price: number
     category_id: number
 }
+
+export interface LocalCart{
+    name: string,
+    count: number,
+}
+

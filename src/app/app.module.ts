@@ -7,13 +7,15 @@ import { ListBooksComponent } from './myComponents/list-books/list-books.compone
 import { UpdateBookComponent } from './myComponents/update-book/update-book.component';
 import { AddBookComponent } from './myComponents/add-book/add-book.component';
 import { FormsModule } from '@angular/forms';
+import { CartComponent } from './myComponents/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListBooksComponent,
     UpdateBookComponent,
-    AddBookComponent
+    AddBookComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

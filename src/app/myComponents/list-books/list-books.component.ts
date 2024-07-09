@@ -98,6 +98,23 @@ export class ListBooksComponent implements OnInit {
     this.adminMode = !this.adminMode;
   }
 
+  addToCart(bookTitle: string, bookPrice: number)
+  {
+    for (let index = 0; ; index++) {
+
+      let book = localStorage.key(index);
+      if (!book) break;
+      if (book === bookTitle)
+      {
+        const bookCount = Number(localStorage.getItem(book));
+        localStorage.setItem(book, (bookCount+1).toString());
+        return;
+      }
+    }
+    localStorage.setItem(bookTitle, "1");
+    
+  }
+
   ngOnInit(): void {
   }
 

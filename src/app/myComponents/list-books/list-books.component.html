@@ -1,7 +1,8 @@
 <div class="catagories center">
     <ul class="flex">
         <li (click)="changeFilterByCategory(0)">All</li>
-        <li *ngFor="let category of categories" class="categories-filter" (click)="changeFilterByCategory(category.category_id)" >
+        <li *ngFor="let category of categories" class="categories-filter"
+            (click)="changeFilterByCategory(category.category_id)">
             {{category.name}}
         </li>
         <li class="adminModeToggler">
@@ -15,15 +16,16 @@
     <div class="books" *ngIf="books && books.length>0; else noBooks">
         <!-- Display all the books -->
         <ng-template [ngIf]="filterByCategory == 0" [ngIfElse]="applyFilter">
-            <div class="book" *ngFor="let book of books"  >
+            <div class="book" *ngFor="let book of books">
                 <h2>{{book.title}}</h2>
                 <p [class]="['pin', getBookCategoryName(book)]">{{ getBookCategoryName(book) }}</p>
-    
+
                 <p>by {{book.author}}</p>
                 <hr>
                 <p>{{book.description.slice(0,100)}}...</p>
                 <p><b>${{book.price}}</b></p>
                 <div class="buttons">
+                    <button class="btn btn-update" (click)="addToCart(book.title, book.price)"> Add to cart</button>
                     <button class="btn btn-update" *ngIf="adminMode" (click)="gotoUpdatePage()"
                         [routerLink]="['/update', book.book_id]">Update</button>
                     <button class="btn btn-del" *ngIf="adminMode" (click)="deleteBook(book.book_id)">Delete</button>
@@ -31,18 +33,19 @@
             </div>
         </ng-template>
 
-<!-- if category filter is applied -->
+        <!-- if category filter is applied -->
         <ng-template #applyFilter>
-            <ng-template  *ngFor="let book of books" [ngIf]="book.category_id === filterByCategory">
-            <div class="book">
+            <ng-template *ngFor="let book of books" [ngIf]="book.category_id === filterByCategory">
+                <div class="book">
                     <h2>{{book.title}}</h2>
                     <p [class]="['pin', getBookCategoryName(book)]">{{ getBookCategoryName(book) }}</p>
-                    
+
                     <p>by {{book.author}}</p>
                     <hr>
                     <p>{{book.description.slice(0,100)}}...</p>
                     <p><b>${{book.price}}</b></p>
                     <div class="buttons">
+                        <button class="btn btn-update" (click)="addToCart(book.title, book.price)"> Add to cart</button>
                         <button class="btn btn-update" *ngIf="adminMode" (click)="gotoUpdatePage()"
                             [routerLink]="['/update', book.book_id]">Update</button>
                         <button class="btn btn-del" *ngIf="adminMode" (click)="deleteBook(book.book_id)">Delete</button>
