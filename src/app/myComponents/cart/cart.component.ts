@@ -1,30 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Book, LocalCart } from 'src/app/Book';
-import { Category } from 'src/app/Category';
-import { SenderService } from 'src/app/sender.service';
+import { Component, OnChanges, SimpleChanges} from '@angular/core';
+import { LocalCart } from 'src/app/Book';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnChanges{
 
   componentName: string;
   booksOnCart: LocalCart[];
+  totalBooks: number;
 
   constructor() {
     this.componentName = "Cart";
     this.booksOnCart = [];
+    this.totalBooks = 0;
     for (let index = 0; ; index++) {
       let book = localStorage.key(index);
       if (!book) break // No books
 
       const bookCount = Number(localStorage.getItem(book));
       this.booksOnCart.push( {name: book, count: bookCount} );
+      this.calculateTotalBooks()
+
     }
   }
+
+  calculateTotalBooks()
+  {
+          this.totalBooks = this.booksOnCart.reduce( (acc, book) => {
+
+        return {name: acc.name, count: (acc.count + book.count)}
+
+      } ).count;
+  }
+
   clearCart()
   {
     const clear = confirm("All item will be removed!");
@@ -40,7 +51,10 @@ export class CartComponent implements OnInit {
     localStorage.removeItem(bookTitle);
   }
 
-  ngOnInit(): void {
+  
+  ngOnChanges(changes: SimpleChanges): void {
+      this.calculateTotalBooks()
   }
+
 
 }
