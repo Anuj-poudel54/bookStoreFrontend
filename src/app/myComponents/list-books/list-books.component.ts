@@ -9,7 +9,7 @@ import { SenderService } from 'src/app/sender.service';
   templateUrl: './list-books.component.html',
   styleUrls: ['./list-books.component.css']
 })
-export class ListBooksComponent implements OnInit {
+export class ListBooksComponent {
   books: Book[];
   categories: Category[];
   router: Router;
@@ -106,16 +106,21 @@ export class ListBooksComponent implements OnInit {
       if (!book) break;
       if (book === bookTitle)
       {
-        const bookCount = Number(localStorage.getItem(book));
-        localStorage.setItem(book, (bookCount+1).toString());
+        const bookDetail = localStorage.getItem(book);
+
+        if (bookDetail === null) return;
+
+        let bookDetailJson = JSON.parse(bookDetail);
+        const bookCount = Number( bookDetailJson.count );
+        bookDetailJson = { count: bookCount+1, price: bookPrice }
+        localStorage.setItem(book, JSON.stringify(bookDetailJson));
         return;
       }
     }
-    localStorage.setItem(bookTitle, "1");
+
+    localStorage.setItem(bookTitle, JSON.stringify( {count: 1, price: bookPrice} ));
     
   }
 
-  ngOnInit(): void {
-  }
 
 }
