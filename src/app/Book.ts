@@ -10,5 +10,6 @@ export class Book {
 export interface LocalCart{
     name: string,
     count: number,
+    price: number
 }
 
