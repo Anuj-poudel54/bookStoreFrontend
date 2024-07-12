@@ -10,12 +10,15 @@
 <div class="books">
     <ng-template [ngIf]=" booksOnCart !== undefined && booksOnCart.length > 0" [ngIfElse]="noBooks">
         <div class="cart-book" *ngFor="let book of booksOnCart">
-            <strong>{{book.name}}</strong> <strong> {{book.count}}</strong>
+            <strong>{{book.name}} X {{book.count}}</strong> <strong> ${{book.price}}</strong>
             <button (click)="removeBookFromCart(book.name)" class="remove-book-btn">Remove</button>
         </div>
 
-        <hr>
 
+        <hr>
+        <div class="cart-book">
+            <strong>Total</strong> <strong> ${{totalPrice}}</strong>
+        </div>
     </ng-template>
 
     <ng-template #noBooks>
