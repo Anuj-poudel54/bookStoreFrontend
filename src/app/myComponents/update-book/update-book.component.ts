@@ -19,6 +19,8 @@ export class UpdateBookComponent implements OnInit {
   author: string | undefined
   category: string | undefined
   bookToUpdate: Book | undefined;
+  image: File | null;
+
   constructor(private _ActivatedRoute: ActivatedRoute, private bookSender: SenderService, private renderer: Renderer2) {
     this.book_id = this._ActivatedRoute.snapshot.paramMap.get("book_id");
     this.books = this.bookSender.books;
@@ -36,6 +38,15 @@ export class UpdateBookComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onFileSelected(event: Event)
+  {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files[0])
+    {
+      this.image = fileInput.files[0];
+    }
+  }
+
   async updateBook() {
     const book = {
       author: this.author,
@@ -44,17 +55,22 @@ export class UpdateBookComponent implements OnInit {
       price: this.price,
       category_id: this.categories.find((cat) => cat.name === this.category)?.category_id
     }
+
+    const formData  = new FormData();
+    formData.append("book", JSON.stringify(book));
+    if (this.image){
+      formData.append("image", this.image);
+    }
+
     if (book.author && book.price && book.description && book.title && book.category_id && book != this.bookToUpdate) {
       let headersList = {
         "Accept": "*/*",
-        "Content-Type": "application/json"
       }
 
-      let bodyContent = JSON.stringify(book);
 
       let response = await fetch("http://localhost:3000/update/" + this.book_id, {
         method: "PUT",
-        body: bodyContent,
+        body: formData,
         headers: headersList
       });
       const msg = document.getElementById("msg");

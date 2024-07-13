@@ -1,4 +1,4 @@
-<form action="" (ngSubmit)="addBook()">
+<form action="" (ngSubmit)="addBook()" id="add-form" enctype="multipart/form-data">
     <div class="inputs">
 
         <input type="text" [(ngModel)]="title" name="title" placeholder="Book title...">
@@ -8,6 +8,7 @@
         <datalist id="categories">
             <option *ngFor="let category of categories" value={{category.name}}></option>
         </datalist>
+        <input type="file" accept="image/*" (change)="onFileSelected($event)">
         <input type="number" [(ngModel)]="price" name="price" placeholder="Book price...">
         <input type="Submit" value="Add" class="btn submit-btn">
     </div>

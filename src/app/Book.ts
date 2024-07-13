@@ -5,6 +5,7 @@ export class Book {
     description: string
     price: number
     category_id: number
+    fileurl?: string
 }
 
 export interface LocalCart{
