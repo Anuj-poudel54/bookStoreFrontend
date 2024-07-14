@@ -39,7 +39,7 @@
                 <div class="book">
                     <h2>{{book.title}}</h2>
                     <p [class]="['pin', getBookCategoryName(book)]">{{ getBookCategoryName(book) }}</p>
-
+                    <img src="{{book.fileurl}}" width="200" alt="" style="width: 100%; margin-block: .3rem;">
                     <p>by {{book.author}}</p>
                     <hr>
                     <p>{{book.description.slice(0,100)}}...</p>
